@@ -1,5 +1,5 @@
 import random as rand
-from src import Params
+import Params
 
 
 class Ant:

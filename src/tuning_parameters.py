@@ -1,7 +1,7 @@
-from src import Params
-from src.Qap import Qap
-from src.ants import Ants
-from src import Util
+import Params
+from Qap import Qap
+from ants import Ants
+import Util
 import os
 import sys
 

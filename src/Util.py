@@ -1,4 +1,4 @@
-from src import Params
+import Params
 
 
 # Read the configurations to get the list of configuration for the Automatic Configuration

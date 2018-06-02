@@ -1,7 +1,7 @@
-from src import Params
-from src import Util
-from src.Qap import Qap
-from src.ants import Ants
+import Params
+import Util
+from Qap import Qap
+from ants import Ants
 import os
 import sys
 import numpy as np

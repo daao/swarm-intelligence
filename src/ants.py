@@ -1,5 +1,5 @@
-from src.ant import Ant
-from src import Params
+from ant import Ant
+import Params
 import numpy as np
 
 
