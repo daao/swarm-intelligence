@@ -1,3 +1,6 @@
+!IMPORTANT!
+For running the project on Linux, you need to be in the folder "src" to run the code.
+
 1. Scripts 
 For the project, there is different executable script :
 

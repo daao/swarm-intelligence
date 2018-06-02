@@ -64,15 +64,15 @@ def write_configuration(configuration, algo):
 
 
 def terminal_condition(run, instance):
-    return (run >= Params.singleton.MAX_RUN) or (runs[run] <= Params.singleton.optimum[instance])
+    return (run >= Params.singleton.MAX_RUN) or (runs[run] <= Params.singleton.optimums[instance])
 
 
 path = "../QAP_instances/"
 Util.set_parameters(sys.argv)
 
 runs = [sys.maxsize for i in range(Params.singleton.MAX_RUN)]
-if len(Params.singleton.optimum) == 0:
-    Params.singleton.set_optimum([1 for i in range(len(os.listdir(path)))])
+if len(Params.singleton.optimums) == 0:
+    Params.singleton.set_optimums([1 for i in range(len(os.listdir(path)))])
 
 as_algo = "eas" if(Params.singleton.eas_flag) else "rba"
 
