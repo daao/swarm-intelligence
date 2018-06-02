@@ -1,6 +1,7 @@
+1. Scripts 
 For the project, there is different executable script :
 
---- TUNING PARAMETERS ---
+1.2 Automatic tuning configuration ---
 tuning_parameter.py : program that compute the best configuration based on a Iterative Algorithm Configuration
 
 ARGUMENTS
@@ -26,8 +27,7 @@ program multiple times.
 If you provide the optimum file, you need to define the optimal solution for each instance of "QAP_instances" where each
 line is the optimal solution. (!ORDER!) The first line will be the optimal solution for the first instance, and so on.
 
-
---- ACO ---
+1.3 ACO ---
 aco.py : program that will execute the ant system on all instances and return the results (one file per algorithm)
 
 ARGUMENTS :
@@ -50,7 +50,7 @@ The program will give in the stdout the best solution for each run and the best 
 
 * : if you don't define those argument, the program will get the best configuration of the algorithm in the folder "QAP_configurations"
 
----- FOLDERS -----
+2. FOLDERS -----
 data : contains data used to create the different plots for the report
 QAP_configurations : contains output file from the script "tuning_parameter", 1 file per algorithm that remains the best configuration
 QAP_instances : contains instances for the ACO
