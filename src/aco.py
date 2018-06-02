@@ -1,4 +1,5 @@
-from src import Params, Util
+from src import Params
+from src import Util
 from src.Qap import Qap
 from src.ants import Ants
 import os

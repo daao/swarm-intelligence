@@ -1,6 +1,5 @@
 import random as rand
 from src import Params
-import numpy as np
 
 
 class Ant:

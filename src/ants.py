@@ -1,7 +1,6 @@
 from src.ant import Ant
 from src import Params
 import numpy as np
-import math as Math
 
 
 class Ants:
