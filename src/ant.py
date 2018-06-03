@@ -1,5 +1,6 @@
 import random as rand
 import Params
+import numpy as np
 
 
 class Ant:
@@ -34,13 +35,9 @@ class Ant:
     def choose_next_neighbour(self, step):
         next = self.get_current_city()
         while self.visited[next]:
-            cumulative_prob = 0.0
-            r = rand.random()
-            for i in range(len(self.probabilities)):
-                cumulative_prob += self.probabilities[i]
-                if r <= cumulative_prob:
-                    next = i
-                    break
+            # Select the next city in the possibilities and with the corresponding probabilities
+            # Works only if the sum of proba = 1
+            next = np.random.choice(self.nb_city, 1, self.probabilities)[0]
         self.tour[step] = next
         self.visited[next] = True
         self.current_city = next

@@ -92,7 +92,6 @@ def exit_trial(trial):
 
 
 Util.set_parameters(sys.argv) # set all parameters and value from arguments command
-as_algo = "eas" if(Params.singleton.eas_flag) else "rba"
 
 # get the instance for the run
 index_instance = sys.argv.index("-i") if "-i" in sys.argv else sys.argv.index("--instance")
@@ -119,6 +118,7 @@ for t in range(Params.singleton.MAX_TRY):
         update_pheromone(colony) # update the pheromone depending on the ant system
 
         save_run(run, colony) # Save the current run
+
         exit_run(run, colony) # Print the information about the run
         run += 1
     save_best_run() # Save the the run that have the best results

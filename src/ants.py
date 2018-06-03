@@ -62,12 +62,21 @@ class Ants:
 
     # Update the pheromone by following the Rank-Based Ant rules
     def rba_update_pheromone(self):
-        for i in range(self.nb_cities):
-            for j in range(self.nb_cities):
-                pheromon = (1-Params.singleton.RHO)*self.pheromone[i][j]
+        self.evaporation()
+
+        for a in self.colony:
+            for i in range(self.nb_cities-1):
+                j = a.tour[i]
+                h = a.tour[i+1]
                 delta = self.compute_ranked_ants()
                 delta_best = 1/(self.colony[self.find_best()].get_cost())
-                self.pheromone[i][j] = pheromon + delta + Params.singleton.W*delta_best
+                self.pheromone[j][h] += delta + Params.singleton.W*delta_best
+                self.pheromone[h][j] = self.pheromone[j][h]
+
+    def evaporation(self):
+        for i in range(self.nb_cities):
+            for j in range(self.nb_cities):
+                self.pheromone[i][j] = (1-Params.singleton.RHO)*self.pheromone[i][j]
 
     # Compute the delta pheromone with the Rank-Based Ant rules
     # Sort the ant from the best to the worst
@@ -77,19 +86,23 @@ class Ants:
         solutions = [x.get_cost() for x in self.colony]
         solutions.sort()
         sum = 0
-        for r in range(Params.singleton.W-1):
-            sum = (Params.singleton.W - r)*(1/solutions[r])
+        for r in range(1, Params.singleton.W-1):
+            sum += (Params.singleton.W - r)*(1/solutions[r])
         return sum
 
     # Update the pheromone by following the Elitist Ant System rules
     def eas_update_pheromone(self):
         self.update_pheromone()
 
-        for i in range(0, self.nb_cities):
-            for j in range(0, self.nb_cities):
-                nb_elite = self.count_elite()
-                delta = 1/self.colony[self.find_best()].get_cost()
-                self.pheromone[i][j] = nb_elite * delta
+        nb_elite = self.count_elite()
+        delta = 1 / self.colony[self.find_best()].get_cost()
+
+        for a in self.colony:
+            for i in range(self.nb_cities-1):
+                j = a.tour[i]
+                h = a.tour[i + 1]
+                self.pheromone[j][h] += nb_elite * delta
+                self.pheromone[h][j] = self.pheromone[j][h]
 
     # Give the number of ants that have the best solution
     def count_elite(self):
@@ -99,15 +112,19 @@ class Ants:
 
     # Update the pheromone ine a classic way
     def update_pheromone(self):
-        for i in range(self.nb_cities):
-            for j in range(self.nb_cities):
-                pherom = (1 - Params.singleton.RHO) * self.pheromone[i][j]
+        self.evaporation()
+
+        for a in self.colony:
+            for i in range(self.nb_cities-1):
+                j = a.tour[i]
+                h = a.tour[i+1]
                 delta = self.delta_pheromone()
-                self.pheromone[i][j] = pherom+delta
+                self.pheromone[j][h] += delta
+                self.pheromone[h][j] = self.pheromone[j][h]
 
     # Compute the delta for the updating pheromone
     def delta_pheromone(self):
         sum = 0
-        for i in range(0, self.nb_ants):
-            sum += 1/self.colony[i].get_cost()
+        for a in self.colony:
+            sum += 1/a.get_cost()
         return sum
