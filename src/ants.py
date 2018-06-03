@@ -86,7 +86,7 @@ class Ants:
         solutions = [x.get_cost() for x in self.colony]
         solutions.sort()
         sum = 0
-        for r in range(1, Params.singleton.W-1):
+        for r in range(1, Params.singleton.W):
             sum += (Params.singleton.W - r)*(1/solutions[r])
         return sum
 
