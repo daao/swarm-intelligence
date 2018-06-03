@@ -1,5 +1,5 @@
 import Params
-from Qap import Qap
+from reader import Reader
 from ants import Ants
 import Util
 import os
@@ -81,7 +81,7 @@ seeds = Util.read_configuration_files()
 
 i = 0
 for filename in os.listdir(path):
-    qap = Qap(path + "" + filename)
+    qap = Reader(path + "" + filename)
 
     # Loop over each configurations
     for s in range(len(seeds)):

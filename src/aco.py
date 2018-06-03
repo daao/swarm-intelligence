@@ -1,6 +1,6 @@
 import Params
 import Util
-from Qap import Qap
+from reader import Reader
 from ants import Ants
 import os
 import sys
@@ -98,7 +98,7 @@ index_instance = sys.argv.index("-i") if "-i" in sys.argv else sys.argv.index("-
 path = sys.argv[index_instance+1]
 filename = os.path.basename(path)
 
-qap = Qap(path) # construct the problem
+qap = Reader(path) # construct the problem
 
 Util.get_configuration() # get the best configuration of the ant system
 runs = [sys.maxsize for i in range(Params.singleton.MAX_RUN)]
